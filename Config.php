@@ -8,7 +8,7 @@ class Config
 {
     private $dbh;
     private $config;
-    private $config_table = 'config';
+    private $config_table = 'auth_config';
 
     /**
      *
@@ -17,7 +17,7 @@ class Config
      * @param \PDO $dbh
      * @param string $config_table
      */
-    public function __construct(\PDO $dbh, $config_table = 'config')
+    public function __construct(\PDO $dbh, $config_table = 'auth_config')
     {
         $this->dbh = $dbh;
 

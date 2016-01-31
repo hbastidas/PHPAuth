@@ -20,10 +20,10 @@ class AuthTest extends PHPUnit_Framework_TestCase
 		$this->auth   = new PHPAuth\Auth($this->dbh, $this->config);
 
 		// Clean up the database
-		$this->dbh->exec("DELETE FROM attempts;");
-		$this->dbh->exec("DELETE FROM users;");
-		$this->dbh->exec("DELETE FROM sessions;");
-		$this->dbh->exec("DELETE FROM requests;");
+		$this->dbh->exec("DELETE FROM auth_attempts;");
+		$this->dbh->exec("DELETE FROM auth_users;");
+		$this->dbh->exec("DELETE FROM auth_sessions;");
+		$this->dbh->exec("DELETE FROM auth_requests;");
 	}
 
 	public function testRegister()

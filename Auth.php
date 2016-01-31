@@ -3,7 +3,7 @@
 namespace PHPAuth;
 
 use ZxcvbnPhp\Zxcvbn;
-use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer;
 
 /***
 * Auth class
@@ -525,6 +525,7 @@ class Auth
 		$email = htmlentities(strtolower($email));
 
 		if($sendmail) {
+
 			$addRequest = $this->addRequest($uid, $email, "activation", $sendmail);
 
 			if($addRequest['error'] == 1) {

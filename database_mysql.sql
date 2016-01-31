@@ -1,12 +1,14 @@
 -- Adminer 4.2.2 MySQL dump
 
 SET NAMES utf8;
-SET time_zone = '+00:00';
+SET time_zone = '+04:30';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `attempts`;
-CREATE TABLE `attempts` (
+
+
+DROP TABLE IF EXISTS `auth_attempts`;
+CREATE TABLE `auth_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(39) NOT NULL,
   `expiredate` datetime NOT NULL,
@@ -14,14 +16,14 @@ CREATE TABLE `attempts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `config`;
-CREATE TABLE `config` (
+DROP TABLE IF EXISTS `auth_config`;
+CREATE TABLE `auth_config` (
   `setting` varchar(100) NOT NULL,
   `value` varchar(100) DEFAULT NULL,
   UNIQUE KEY `setting` (`setting`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `config` (`setting`, `value`) VALUES
+INSERT INTO `auth_config` (`setting`, `value`) VALUES
 ('attack_mitigation_time',  '+30 minutes'),
 ('attempts_before_ban', '30'),
 ('attempts_before_verify',  '5'),
@@ -60,8 +62,8 @@ INSERT INTO `config` (`setting`, `value`) VALUES
 ('verify_password_min_length',  '3'),
 ('request_key_expiration', '+10 minutes');
 
-DROP TABLE IF EXISTS `requests`;
-CREATE TABLE `requests` (
+DROP TABLE IF EXISTS `auth_requests`;
+CREATE TABLE `auth_requests` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
   `rkey` varchar(20) NOT NULL,
@@ -71,8 +73,8 @@ CREATE TABLE `requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `sessions`;
-CREATE TABLE `sessions` (
+DROP TABLE IF EXISTS `auth_sessions`;
+CREATE TABLE `auth_sessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
   `hash` varchar(40) NOT NULL,
@@ -84,8 +86,8 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+DROP TABLE IF EXISTS `auth_users`;
+CREATE TABLE `auth_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,
